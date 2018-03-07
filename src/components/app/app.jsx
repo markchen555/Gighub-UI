@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import Routes from './routes.jsx';
 import Navbar from '../navbar/navbar.jsx';
 
+import './app.css'
+
 class App extends Component {
   constructor() {
     super();
@@ -11,7 +13,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="app-wrapper">
         <Navbar />
         <Routes />
       </div>

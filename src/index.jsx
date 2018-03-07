@@ -9,6 +9,8 @@ import { configureStore, history } from './store/configureStore';
 import App from './components/app/app.jsx';
 import Loading from './components/loading/loading.jsx';
 
+import './index.css';
+
 const { store, persistor } = configureStore();
 
 render(
