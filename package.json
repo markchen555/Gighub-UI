@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production --config webpack.prod.config.js",
-    "build-dev": "webpack --mode development --config webpack.dev.config.js --watch"
+    "build-dev": "webpack --mode development --config webpack.dev.config.js --watch",
+    "start-dev": "live-server dist --entry-file dist/index.html"
   },
   "repository": {
     "type": "git",
@@ -40,9 +41,11 @@
     "css-loader": "^0.28.10",
     "dotenv-webpack": "^1.5.5",
     "html-webpack-plugin": "^3.0.6",
+    "live-server": "^1.2.0",
     "redux-logger": "^3.0.6",
     "style-loader": "^0.20.2",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.10"
+    "webpack-cli": "^2.0.10",
+    "webpack-dev-server": "^3.1.0"
   }
 }
