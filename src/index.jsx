@@ -13,7 +13,7 @@ const { store, persistor } = configureStore();
 
 render(
   <Provider store={store}>
-    <PersistGate persistor={persistor} loading={Loading}>
+    <PersistGate persistor={persistor} loading={<Loading />}>
       <ConnectedRouter history={history}>
         <App />
       </ConnectedRouter>

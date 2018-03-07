@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production --config webpack.prod.config.js",
     "build-dev": "webpack --mode development --config webpack.dev.config.js --watch",
-    "start-dev": "live-server dist --entry-file dist/index.html"
+    "start-dev": "live-server dist --entry-file=index.html"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,11 @@
   },
   "homepage": "https://github.com/markchen555/Gighub-UI#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "history": "^4.7.2",
+    "jsonwebtoken": "^8.2.0",
     "localforage": "^1.6.0",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
