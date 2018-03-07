@@ -17,7 +17,8 @@ Fork a copy from github or download the repository on your computer, unzip it an
 0. Create .env file following the sample given in sample.env.
 1. Run `npm install` to install all dependencies to your local machine.
 2. Run `npm run build` to compile.
-2.5 Run `npm run build-dev` if you would like to compile in dev settings.
+3. Open a new terminal.
+4. Run `npm run start-dev` to start server.
 
 ---
 
