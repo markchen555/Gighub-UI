@@ -8,13 +8,13 @@ const AuthReducer = (state=initialState, action) => {
   const payload = action.payload;
 
   switch (action.type) {
-    case 'LOGIN_SUCCESS': {
+    case 'AUTH_SUCCESS': {
       return Object.assign({}, state, {
         user: payload,
         authorized: true,
       });
     }
-    case 'LOGIN_FAILED': {
+    case 'AUTH_FAILED': {
       return Object.assign({}, state, {
         failed: true,
       });
