@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+
+import Routes from './routes.jsx';
 
 class App extends Component {
   constructor() {
@@ -8,10 +11,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        Hello world!
+        <Routes />
       </div>
     )
   }
 };
 
-export default App;
+export default withRouter(App);
