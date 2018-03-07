@@ -37,4 +37,4 @@ const authLogout = () => (dispatch) => {
   dispatch(push('/'));
 };
 
-export { authLogin, authLogout };
+export { authLogin, authLogout, authSignup };
