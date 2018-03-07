@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+
+import { authLogout } from '../../actions/authActions';
 
 class Navbar extends Component {
   constructor(props) {
@@ -9,14 +12,19 @@ class Navbar extends Component {
   }
 
   render() {
-    const { authorized } = this.props;
+    const { authorized, authLogout } = this.props;
 
     return (
       <div>
         <Link to="/" >GigHub</Link>
         {
           authorized ?
-          <Link to="/logout">Logout</Link> :
+          <button type="button" onClick={(e) => {
+            e.preventDefault();
+            authLogout();
+          }} >
+            Logout
+          </button> :
           <Link to="/login">Login</Link>
         }
       </div>
@@ -30,8 +38,15 @@ const NavbarState = (state) => {
   }
 };
 
-Navbar.propTypes = {
-  authorized: PropTypes.bool,
+const NavbarDispatch = (dispatch) => {
+  return {
+    authLogout: bindActionCreators(authLogout, dispatch),
+  }
 };
 
-export default connect(NavbarState)(Navbar);
+Navbar.propTypes = {
+  authorized: PropTypes.bool,
+  authLogout: PropTypes.func,
+};
+
+export default connect(NavbarState, NavbarDispatch)(Navbar);
