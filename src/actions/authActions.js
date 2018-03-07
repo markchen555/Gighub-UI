@@ -1,12 +1,13 @@
 import axios from 'axios';
+import { decode } from 'jsonwebtoken';
 
 const API_SERVER = process.env.API_SERVER;
 
 const authLogin = (loginObj) => (dispatch) => {
-  axios.post(`${API_SERVER}/api/`)
-    .then(({ headers }) => {
-      console.log('headers: ', headers);
-      // dispatch({ type: 'LOGIN_SUCCESS', payload: headers.JWT });
+  axios.get(`${API_SERVER}/api/user/login/${loginObj.username}/${loginObj.password}`)
+    .then(({ data }) => {
+      const decoded = decode(data, { complete: true });
+      dispatch({ type: 'LOGIN_SUCCESS', payload: decoded.payload });
     })
     .catch(err => {
       dispatch({ type: 'LOGIN_FAILED' });
