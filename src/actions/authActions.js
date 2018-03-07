@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { decode } from 'jsonwebtoken';
+import { push } from 'react-router-redux';
 
 const API_SERVER = process.env.API_SERVER;
 
@@ -14,4 +15,9 @@ const authLogin = (loginObj) => (dispatch) => {
     });
 };
 
-export { authLogin };
+const authLogout = () => (dispatch) => {
+  dispatch({ type: 'LOGOUT_SUCCESS' });
+  dispatch(push('/'));
+};
+
+export { authLogin, authLogout };
