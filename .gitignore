@@ -68,6 +68,7 @@ typings/
 
 # React
 bundle.js
+dist/index.html
 
 # Packege-lock
 package-lock.json
