@@ -16,19 +16,19 @@ class LandingPage extends Component {
           <h1>Landing Page</h1>
           <p>Lorem ipsum...</p>
         </div> */}
-        <header class="masthead header-wrapper text-center text-white d-flex">
-            <div class="container my-auto">
-                <div class="row">
-                    <div class="col-lg-10 mx-auto">
-                        <h1 class="text-uppercase">
+        <header className="masthead header-wrapper text-center text-white d-flex">
+            <div className="container my-auto">
+                <div className="row">
+                    <div className="col-lg-10 mx-auto">
+                        <h1 className="text-uppercase">
                             <strong>Landing Page</strong>
                         </h1>
                         <hr></hr>
                     </div>
-                    <div class="col-lg-8 mx-auto">
-                        <p class="text-faded mb-5">Type the job type into the input bar to begin search.</p>
+                    <div className="col-lg-8 mx-auto">
+                        <p className="text-faded mb-5">Type the job type into the input bar to begin search.</p>
                         <input type="text"/>
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Submit</a>
+                        <a className="btn btn-primary btn-xl js-scroll-trigger" href="#about">Submit</a>
                     </div>
                 </div>
             </div>
