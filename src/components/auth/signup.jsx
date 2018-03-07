@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Redirect, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import { authSignup } from '../../actions/authActions';
 
 class SignupPage extends Component {
   constructor(props) {
@@ -62,6 +68,7 @@ class SignupPage extends Component {
 
   render() {
     const { username, password, passwordCheck, firstName, lastName, email } = this.state;
+    const { authorized, authSignup } = this.props;
 
     return (
       <div>
@@ -88,12 +95,12 @@ class SignupPage extends Component {
           </div>
           <div>
             <label htmlFor="auth-sign_email">Email</label>
-            <input type="text" id="auth-sign_email" onChange={(e) => this.setEmail(e.target.value)} />
+            <input type="text" id="auth-sign_email" onChange={(e) => this.setEmail(e.target.value)}  />
           </div>
           <button type="button" onClick={(e) => {
             e.preventDefault();
             if (this.checkPW()) {
-              
+              authSignup({ username, password, firstName, lastName, email });
             } else {
               alert(`Passwords do not match`);
             }
@@ -101,9 +108,29 @@ class SignupPage extends Component {
             Sign Up
           </button>
         </form>
+        <div>
+          <Link to="/login">Login if you already have an account!</Link>
+        </div>
       </div>
     )
   }
 };
 
-export default SignupPage;
+const SignupState = (state) => {
+  return {
+    authorized: state.auth.authorized,
+  }
+};
+
+const SignupDispatch = (dispatch) => {
+  return {
+    authSignup: bindActionCreators(authSignup, dispatch),
+  }
+};
+
+SignupPage.propTypes = {
+  authorized: PropTypes.bool,
+  authSignup: PropTypes.func,
+};
+
+export default connect(SignupState, SignupDispatch)(SignupPage);
