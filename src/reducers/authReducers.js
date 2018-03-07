@@ -19,6 +19,13 @@ const AuthReducer = (state=initialState, action) => {
         failed: true,
       });
     }
+    case 'LOGOUT_SUCCESS': {
+      return Object.assign({}, state, {
+        user: {},
+        authorized: false,
+        failed: false,
+      });
+    }
     default: {
       return state;
     }
