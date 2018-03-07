@@ -4,7 +4,8 @@
   "description": "### Gighub-UI - Job search made easy.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production --config webpack.prod.config.js",
+    "build-dev": "webpack --mode development --config webpack.dev.config.js --watch"
   },
   "repository": {
     "type": "git",
