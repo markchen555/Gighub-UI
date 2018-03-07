@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import LandingPage from '../landing/landing.jsx';
+import LoginPage from '../auth/login.jsx';
 
 class AppRoutes extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class AppRoutes extends Component {
     return (
       <Switch>
         <Route exact path="/" component={LandingPage} />
+        <Route path="/login" component={LoginPage} />
       </Switch>
     )
   }
