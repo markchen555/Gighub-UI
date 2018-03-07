@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { authLogin } from '../../actions/authActions';
@@ -30,6 +31,12 @@ class LoginPage extends Component {
   render() {
     const { username, password } = this.state;
     const { authLogin, authorized, failed } = this.props;
+
+    if (authorized) {
+      return (
+        <Redirect to="/" />
+      )
+    }
 
     return (
       <div>
