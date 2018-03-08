@@ -1,0 +1,21 @@
+.auth {
+  height: 100%;
+  margin-top: -57px;
+}
+
+.login-container {
+  padding-top: 57px;
+  height: 100%;
+}
+
+.login-row {
+  padding-top: 2%;
+}
+
+.login-row button {
+  margin-right: 5px;
+}
+
+.login-submit {
+  text-align: right;
+}

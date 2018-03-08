@@ -25,7 +25,7 @@ class Navbar extends Component {
             <li className="nav-item active">
             {
               authorized ?
-              <button className="nav-link" type="button" onClick={(e) => {
+              <button type="button" className="btn btn-outline-secondary" onClick={(e) => {
                 e.preventDefault();
                 authLogout();
             }} >

@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 
 import { authSignup } from '../../actions/authActions';
+
+import './auth.css';
+
+import UserSignup from './userSignup.jsx';
+import CompanySignup from './companySignup.jsx';
+import RecruiterSignup from './recruiterSignup.jsx';
 
 class SignupPage extends Component {
   constructor(props) {
@@ -17,7 +24,19 @@ class SignupPage extends Component {
       email: '',
       firstName: '',
       lastName: '',
+      token: '',
+      type: 0,
     };
+
+    this.setEmail = this.setEmail.bind(this);
+    this.setFirst = this.setFirst.bind(this);
+    this.setLast = this.setLast.bind(this);
+    this.setPW = this.setPW.bind(this);
+    this.setPWCheck = this.setPWCheck.bind(this);
+    this.setUsername = this.setUsername.bind(this);
+    this.checkPW = this.checkPW.bind(this);
+    this.setToken = this.setToken.bind(this);
+    this.signup = this.signup.bind(this);
   }
 
   checkPW() {
@@ -28,6 +47,25 @@ class SignupPage extends Component {
     }
 
     return false;
+  }
+
+  setToken(text) {
+    this.setState({
+      token: text,
+    });
+  }
+
+  setType(num) {
+    this.setState({
+      type: num,
+      username: '',
+      email: '',
+      password: '',
+      passwordCheck: '',
+      firstName: '',
+      lastName: '',
+      token: '',
+    });
   }
 
   setUsername(text) {
@@ -66,50 +104,84 @@ class SignupPage extends Component {
     });
   }
 
+  signup(type) {
+    const { username, password, firstName, lastName, email, token } = this.state;
+
+    const loginObj = {
+      username,
+      password,
+    };
+
+    if (type === 0 || type === 2) {
+      loginObj.firstName = firstName;
+      loginObj.lastName = lastName;
+      loginObj.email = email;
+    }
+
+    if (type === 2) {
+      loginObj.token = token;
+    }
+
+    this.props.authSignup(loginObj, type);
+  }
+
   render() {
-    const { username, password, passwordCheck, firstName, lastName, email } = this.state;
-    const { authorized, authSignup } = this.props;
+    const { username, password, passwordCheck, firstName, lastName, email, type, token } = this.state;
+    const { authorized, push } = this.props;
+
+    const typeDetails = {
+      0: 'Job Seeker',
+      1: 'Company',
+      2: 'Recruiter'
+    };
+
+    if (authorized) {
+      return (
+        <Redirect to="/" />
+      )
+    }
 
     return (
-      <div>
-        <form>
-          <div>
-            <label htmlFor="auth-sign_username">Username</label>
-            <input type="text" id="auth-sign_username" onChange={(e) => this.setUsername(e.target.value)} />
+      <div className="auth">
+        <div className="container login-container">
+          <div className="row justify-content-center login-row">
+            <button type="button" className="btn btn-outline-secondary" onClick={(e) => {
+              e.preventDefault();
+              this.setType(0);
+            }}>
+              Job Seeker
+            </button>
+            <button type="button" className="btn btn-outline-secondary" onClick={(e) => {
+              e.preventDefault();
+              this.setType(1);
+            }}>
+              Company
+            </button>
+            <button type="button" className="btn btn-outline-secondary" onClick={(e) => {
+              e.preventDefault();
+              this.setType(2);
+            }}>
+              Recruiter
+            </button>
           </div>
-          <div>
-            <label htmlFor="auth-sign_pw">Password</label>
-            <input type="password" id="auth-sign_pw" onChange={(e) => this.setPW(e.target.value)} />
+          <div className="row justify-content-center login-row">
+            <h4>Signing up as: <strong>{ typeDetails[type] }</strong></h4>
           </div>
-          <div>
-            <label htmlFor="auth-sign_pwCheck">Re-type Password</label>
-            <input type="password" id="auth-sign_pwCheck" onChange={(e) => this.setPWCheck(e.target.value)} />
-          </div>
-          <div>
-            <label htmlFor="auth-sign_first">First Name</label>
-            <input type="text" id="auth-sign-first" onChange={(e) => this.setFirst(e.target.value)} />
-          </div>
-          <div>
-            <label htmlFor="auth-sign_last">Last Name</label>
-            <input type="text" id="auth-sign_last" onChange={(e) => this.setLast(e.target.value)} />
-          </div>
-          <div>
-            <label htmlFor="auth-sign_email">Email</label>
-            <input type="text" id="auth-sign_email" onChange={(e) => this.setEmail(e.target.value)}  />
-          </div>
-          <button type="button" onClick={(e) => {
-            e.preventDefault();
-            if (this.checkPW()) {
-              authSignup({ username, password, firstName, lastName, email });
-            } else {
-              alert(`Passwords do not match`);
+          <div className="row justify-content-center login-row">
+            {
+              type === 0 &&
+              <UserSignup type={type} setUsername={this.setUsername} setEmail={this.setEmail} setFirst={this.setFirst} setLast={this.setLast} setPW={this.setPW} setPWCheck={this.setPWCheck} signup={this.signup} checkPW={this.checkPW} push={push} />
             }
-          }} >
-            Sign Up
-          </button>
-        </form>
-        <div>
-          <Link to="/login">Login if you already have an account!</Link>
+            {
+              type === 1 &&
+              <CompanySignup type={type} setUsername={this.setUsername} setPW={this.setPW} setPWCheck={this.setPWCheck} checkPW={this.checkPW} push={push} signup={this.signup} />
+            }
+            {
+              type === 2 &&
+              <RecruiterSignup type={type} setUsername={this.setUsername} setEmail={this.setEmail} setFirst={this.setFirst} setLast={this.setLast} setPW={this.setPW} setPWCheck={this.setPWCheck} signup={this.signup} checkPW={this.checkPW} push={push} setToken={this.setToken} />
+            }
+          </div>
+          
         </div>
       </div>
     )
@@ -125,6 +197,7 @@ const SignupState = (state) => {
 const SignupDispatch = (dispatch) => {
   return {
     authSignup: bindActionCreators(authSignup, dispatch),
+    push: bindActionCreators(push, dispatch),
   }
 };
 
