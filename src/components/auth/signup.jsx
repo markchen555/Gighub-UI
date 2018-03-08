@@ -100,7 +100,7 @@ class SignupPage extends Component {
           <button type="button" onClick={(e) => {
             e.preventDefault();
             if (this.checkPW()) {
-              authSignup({ username, password, firstName, lastName, email });
+              authSignup({ username, password, firstName, lastName, email }, 0);
             } else {
               alert(`Passwords do not match`);
             }

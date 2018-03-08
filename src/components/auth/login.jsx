@@ -51,7 +51,7 @@ class LoginPage extends Component {
           </div>
           <button type="button" onClick={(e) => {
             e.preventDefault();
-            authLogin({ username, password });
+            authLogin({ username, password }, 0);
           }} >
             Login
           </button>
