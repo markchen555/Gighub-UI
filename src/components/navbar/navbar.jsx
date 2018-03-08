@@ -23,6 +23,11 @@ class Navbar extends Component {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
+              {
+                authorized ? <Link className="nav-link" to="/profile">Profile</Link> : null
+              }
+            </li>
+            <li className="nav-item active">
             {
               authorized ?
               <button type="button" className="btn btn-outline-secondary" onClick={(e) => {
