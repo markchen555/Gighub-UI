@@ -27,10 +27,10 @@ class LandingPage extends Component {
                     </div>
                     <div className="col-lg-8 mx-auto">
                         <p className="text-faded mb-5">Type the job title into the input section to begin searching.</p>
-                        <div class="input-group mb-3">
-                          <input type="text" class="form-control" placeholder="Job Title" aria-label="Job Title" aria-describedby="basic-addon2"></input>
-                        <div class="input-group-append">
-                        <button class="btn btn-secondary" type="button">Search</button>
+                        <div className="input-group mb-3">
+                          <input type="text" className="form-control" placeholder="Job Title" aria-label="Job Title" aria-describedby="basic-addon2"></input>
+                        <div className="input-group-append">
+                        <button className="btn btn-secondary" type="button">Search</button>
                         </div>
                       </div>
                     </div>   
