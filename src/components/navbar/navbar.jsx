@@ -24,7 +24,8 @@ class Navbar extends Component {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               {
-                authorized ? <Link className="nav-link" to="/profile">Profile</Link> : null
+                authorized && 
+                <Link className="nav-link" to="/profile">Profile</Link>
               }
             </li>
             <li className="nav-item active">
