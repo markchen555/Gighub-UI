@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const UserSignup = ({ setUsername, setPW, setPWCheck, setFirst, setLast, setEmail, checkPW, authSignup }) => (
+const UserSignup = ({ setUsername, setPW, setPWCheck, setFirst, setLast, setEmail, checkPW, signup, type }) => (
   <form>
     <div className="row">
       <div className="col col-lg-auto">
@@ -40,7 +40,7 @@ const UserSignup = ({ setUsername, setPW, setPWCheck, setFirst, setLast, setEmai
           <button type="button" className="btn btn-outline-primary" onClick={(e) => {
               e.preventDefault();
               if (checkPW()) {
-                authSignup({ username, password, firstName, lastName, email }, 0);
+                signup(type);
               } else {
                 alert(`Passwords do not match`);
               }
