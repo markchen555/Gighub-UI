@@ -11,6 +11,7 @@ import './auth.css';
 
 import UserSignup from './userSignup.jsx';
 import CompanySignup from './companySignup.jsx';
+import RecruiterSignup from './recruiterSignup.jsx';
 
 class SignupPage extends Component {
   constructor(props) {
@@ -120,7 +121,7 @@ class SignupPage extends Component {
     if (type === 2) {
       loginObj.token = token;
     }
-    
+
     this.props.authSignup(loginObj, type);
   }
 
@@ -174,6 +175,10 @@ class SignupPage extends Component {
             {
               type === 1 &&
               <CompanySignup type={type} setUsername={this.setUsername} setPW={this.setPW} setPWCheck={this.setPWCheck} checkPW={this.checkPW} push={push} signup={this.signup} />
+            }
+            {
+              type === 2 &&
+              <RecruiterSignup type={type} setUsername={this.setUsername} setEmail={this.setEmail} setFirst={this.setFirst} setLast={this.setLast} setPW={this.setPW} setPWCheck={this.setPWCheck} signup={this.signup} checkPW={this.checkPW} push={push} setToken={this.setToken} />
             }
           </div>
           
