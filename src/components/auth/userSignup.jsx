@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const UserSignup = ({ setUsername, setPW, setPWCheck, setFirst, setLast, setEmail, checkPW, signup, type }) => (
+const UserSignup = ({ setUsername, setPW, setPWCheck, setFirst, setLast, setEmail, checkPW, signup, type, push }) => (
   <form>
     <div className="row">
       <div className="col col-lg-auto">
