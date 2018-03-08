@@ -10,7 +10,7 @@ class LandingPage extends Component {
     return (
       <div className="landing-wrapper">
         <video id="myVideo" className="video-container video-container-overlay" autoPlay loop muted data-reactid=".0.1.0.0">
-          <source type="video/mp4" data-reactid=".0.1.0.0.0" src="https://www.w3schools.com/howto/rain.mp4"></source>
+          <source type="video/mp4" data-reactid=".0.1.0.0.0" src="https://storage.googleapis.com/coverr-main/mp4/Slow_Typer.mp4"></source>
         </video>
         {/* <div className="content text-center">
           <h1>Landing Page</h1>
@@ -21,15 +21,19 @@ class LandingPage extends Component {
                 <div className="row">
                     <div className="col-lg-10 mx-auto">
                         <h1 className="text-uppercase">
-                            <strong>Landing Page</strong>
+                            <strong>Welcome To Gighub!!</strong>
                         </h1>
                         <hr></hr>
                     </div>
                     <div className="col-lg-8 mx-auto">
-                        <p className="text-faded mb-5">Type the job type into the input bar to begin search.</p>
-                        <input type="text"/>
-                        <a className="btn btn-primary btn-xl js-scroll-trigger" href="#about">Submit</a>
-                    </div>
+                        <p className="text-faded mb-5">Type the job title into the input section to begin searching.</p>
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="Job Title" aria-label="Job Title" aria-describedby="basic-addon2"></input>
+                        <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button">Search</button>
+                        </div>
+                      </div>
+                    </div>   
                 </div>
             </div>
         </header>
