@@ -1,233 +1,288 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import axios from 'axios';
+
+import './profile.css';
+
+const API_SERVER = process.env.API_SERVER;
 
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      bio: null,
+    }
+
+    this.fetch = this.fetch.bind(this);
+  }
+
+  componentDidMount() {
+   //this.fetch()
+  }
+
+  fetch() {
+    axios.get(`${API_SERVER}/api/user/profile/${this.props.userId}}`)
+    .then(items => {
+      this.setState({ bio: items.data });
+    })
+    .catch(err => {
+      console.log('Fetch err:', err);
+    })
+  }
+
+  edit() {
+    axios.put(`${API_SERVER}/edit`)
+    .then(items => {
+      console.log('Edit Success!');
+    })
+    .catch(err => {
+      console.log('Fetch err:', err);
+    })
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props.userId, 'this is props')
     return (
-    <div class="container">
-    <div class="row my-2">
-        <div class="col-lg-8 order-lg-2">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
-                </li>
-            </ul>
-            <div class="tab-content py-4">
-                <div class="tab-pane active" id="profile">
-                    <h5 class="mb-3">User Profile</h5>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6>About</h6>
-                            <p>
-                                Web Designer, UI/UX Engineer
-                            </p>
-                            <h6>Hobbies</h6>
-                            <p>
-                                Indie music, skiing and hiking. I love the great outdoors.
-                            </p>
+          <div className="container profile-wrapper">
+            <div className="row my-2">
+                <div className="col-lg-8 order-lg-2">
+                    <ul className="nav nav-tabs">
+                        <li className="nav-item">
+                            <a href="" data-target="#profile" data-toggle="tab" className="nav-link active">Profile</a>
+                        </li>
+                        <li className="nav-item">
+                            <a href="" data-target="#edit" data-toggle="tab" className="nav-link">Edit</a>
+                        </li>
+                    </ul>
+                    <div className="tab-content py-4">
+                        <div className="tab-pane active" id="profile">
+                            <h5 className="mb-3">User Profile</h5>
+                            <form role="form">
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">First name</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Last name</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Email</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Phone Number</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Location</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Headline</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Experience Level</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Education Level</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Linkedin</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Twitter</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Facebook</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Github</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Personal Portfolio</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label className="col-lg-3 col-form-label form-control-label">Desire Salary</label>
+                                <div className="col-lg-9">
+                                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.userId}></input>
+                                </div>
+                              </div>
+                            </form>
                         </div>
-                        <div class="col-md-6">
-                            <h6>Recent badges</h6>
-                            <a href="#" class="badge badge-dark badge-pill">html5</a>
-                            <a href="#" class="badge badge-dark badge-pill">react</a>
-                            <a href="#" class="badge badge-dark badge-pill">codeply</a>
-                            <a href="#" class="badge badge-dark badge-pill">angularjs</a>
-                            <a href="#" class="badge badge-dark badge-pill">css3</a>
-                            <a href="#" class="badge badge-dark badge-pill">jquery</a>
-                            <a href="#" class="badge badge-dark badge-pill">bootstrap</a>
-                            <a href="#" class="badge badge-dark badge-pill">responsive-design</a>
-                            <hr></hr>
-                            <span class="badge badge-primary"><i class="fa fa-user"></i> 900 Followers</span>
-                            <span class="badge badge-success"><i class="fa fa-cog"></i> 43 Forks</span>
-                            <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Views</span>
-                        </div>
-                        {/* <div class="col-md-12">
-                            <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Activity</h5>
-                            <table class="table table-sm table-hover table-striped">
-                                <tbody>                                    
-                                    <tr>
-                                        <td>
-                                            <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> */}
-                    </div>
-                  {/* </row> */}
-                </div>
-                {/* <div class="tab-pane" id="messages">
-                    <div class="alert alert-info alert-dismissable">
-                        <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                    </div>
-                    <table class="table table-hover table-striped">
-                        <tbody>                                    
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">Yesterday</span> There has been a request on your account since that was..
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus. 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget luctus. 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/4</span> Maxamillion ais the fix for tibulum tincidunt ullamcorper eros. 
-                                </td>
-                            </tr>
-                        </tbody> 
-                    </table>
-                </div> */}
-                <div class="tab-pane" id="edit">
-                    <form role="form">
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">First name</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="Name"></input>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Last name</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="Name"></input>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="email" value="email@gmail.com"></input>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Company</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value=""></input>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Website</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="url" value=""></input>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Address</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="" placeholder="Street"></input>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label"></label>
-                            <div class="col-lg-6">
-                                <input class="form-control" type="text" value="" placeholder="City"></input>
-                            </div>
-                            <div class="col-lg-3">
-                                <input class="form-control" type="text" value="" placeholder="State"></input>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>
-                            <div class="col-lg-9">
-                                <select id="user_time_zone" class="form-control" size="0">
-                                    <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                                    <option value="Alaska">(GMT-09:00) Alaska</option>
-                                    <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                                    <option value="Arizona">(GMT-07:00) Arizona</option>
-                                    <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                                    <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                                    <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                                    <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Username</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="janeuser"></input>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password" value="11111122333"></input>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password" value="11111122333"></input>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label"></label>
-                            <div class="col-lg-9">
-                                <input type="reset" class="btn btn-secondary" value="Cancel"></input>
-                                <input type="button" class="btn btn-primary" value="Save Changes"></input>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 order-lg-1 text-center">
-            <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar"></img>
-            <h6 class="mt-2">Upload a different photo</h6>
-            <label class="custom-file">
-                <input type="file" id="file" class="custom-file-input"></input>
-                <button class="custom-file-control">Choose file</button>
-            </label>
-        </div>
-    </div>
-</div>
+                        <div className="tab-pane" id="edit">
+                            <form role="form">
+                                <div className="form-group row">
+                                    <label className="col-lg-3 col-form-label form-control-label">First name</label>
+                                    <div className="col-lg-9">
+                                        <input className="form-control" type="text" value=""></input>
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label className="col-lg-3 col-form-label form-control-label">Last name</label>
+                                    <div className="col-lg-9">
+                                        <input className="form-control" type="text" value=""></input>
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label className="col-lg-3 col-form-label form-control-label">Email</label>
+                                    <div className="col-lg-9">
+                                        <input className="form-control" type="email" value=""></input>
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label className="col-lg-3 col-form-label form-control-label">Phone Number</label>
+                                    <div className="col-lg-9">
+                                        <input className="form-control" type="text" value=""></input>
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label className="col-lg-3 col-form-label form-control-label">Location</label>
+                                    <div className="col-lg-9">
+                                        <input className="form-control" type="text" value="" ></input>
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label className="col-lg-3 col-form-label form-control-label">Headline</label>
+                                    <div className="col-lg-9">
+                                        <input className="form-control" type="text"></input>
+                                    </div>
+                                </div>
+                                <div className="form-group row">
+                                    <label className="col-lg-3 col-form-label form-control-label">Experience Level</label>
+                                    <div className="col-lg-9">
+                                        <select id="user_time_zone" className="form-control" size="0">
+                                            <option value="Entry">Entry</option>
+                                            <option value="Intermediate">Intermediate</option>
+                                            <option value="Advance">Advance</option>
+                                            <option value="Expert">Expert</option>
+                                        </select>
+                                    </div>
+                                </div>
+                              <div className="form-group row">
+                                  <label className="col-lg-3 col-form-label form-control-label">Education Level</label>
+                                  <div className="col-lg-9">
+                                      <select id="user_time_zone" className="form-control" size="0">
+                                          <option value="High School">High school diploma or equivalent</option>
+                                          <option value="College With No Degree">Some college, no degree</option>
+                                          <option value="Postsecondary noo=n-degree award">Postsecondary non-degree award</option>
+                                          <option value="Associate">Associate’s degree</option>
+                                          <option value="Bachelor">Bachelor’s degree</option>
+                                          <option value="Master">Master’s degree</option>
+                                          <option value="Doctor">Doctoral or professional degree</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div className="form-group row">
+                                  <label className="col-lg-3 col-form-label form-control-label">Linkedin</label>
+                                  <div className="col-lg-9">
+                                      <input className="form-control" type="text" value=""></input>
+                                  </div>
+                              </div>
+                              <div className="form-group row">
+                                  <label className="col-lg-3 col-form-label form-control-label">Twitter</label>
+                                  <div className="col-lg-9">
+                                      <input className="form-control" type="text" value=""></input>
+                                  </div>
+                              </div>
+                              <div className="form-group row">
+                                  <label className="col-lg-3 col-form-label form-control-label">Facebook</label>
+                                  <div className="col-lg-9">
+                                      <input className="form-control" type="text" value=""></input>
+                                  </div>
+                              </div>
+                              <div className="form-group row">
+                                  <label className="col-lg-3 col-form-label form-control-label">Github</label>
+                                  <div className="col-lg-9">
+                                      <input className="form-control" type="text" value=""></input>
+                                  </div>
+                              </div>
+                              <div className="form-group row">
+                                  <label className="col-lg-3 col-form-label form-control-label">Personal Portfolio</label>
+                                  <div className="col-lg-9">
+                                      <input className="form-control" type="text" value=""></input>
+                                  </div>
+                              </div>
+                              <div className="form-group row">
+                                  <label className="col-lg-3 col-form-label form-control-label">Desire Salary</label>
+                                  <div className="col-lg-9">
+                                      <select id="user_time_zone" className="form-control" size="0">
+                                          <option value="High School">High school diploma or equivalent</option>
+                                          <option value="College With No Degree">Some college, no degree</option>
+                                          <option value="Postsecondary noo=n-degree award">Postsecondary non-degree award</option>
+                                          <option value="Associate">Associate’s degree</option>
+                                          <option value="Bachelor">Bachelor’s degree</option>
+                                          <option value="Master">Master’s degree</option>
+                                          <option value="Doctor">Doctoral or professional degree</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            
+                              <div className="form-group row">
+                                  <label className="col-lg-3 col-form-label form-control-label"></label>
+                                  <div className="col-lg-9">
+                                      <input type="reset" className="btn btn-secondary" value="Cancel"></input>
+                                      <input type="button" className="btn btn-primary" value="Save Changes"></input>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+              <div className="col-lg-4 order-lg-1 text-center">
+                  <img src="//placehold.it/150" className="mx-auto img-fluid img-circle d-block" alt="avatar"></img>
+                  <h6 className="mt-2">Upload a different photo</h6>
+                  <label className="custom-file">
+                      <input type="file" id="file" className="custom-file-input"></input>
+                      <button className="custom-file-control">Choose file</button>
+                  </label>
+              </div>
+          </div>
+      </div>
     )
   }
 };
 
 const ProfileState = (state) => {
-  console.log(state)
+  console.log(state.auth, 'this is profile state')
   return {
-    //authorized: state.auth.authorized,
+    token: state.auth.user.token,
+    userId: state.auth.user.id,
   }
 };
 
