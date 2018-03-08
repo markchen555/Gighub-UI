@@ -99,7 +99,7 @@ class LoginPage extends Component {
                 </button>
                 <button className="btn btn-outline-primary" onClick={(e) => {
                   e.preventDefault();
-                  authLogin({ username, password }, 0);
+                  authLogin({ username, password }, type);
                 }} >
                   Login
                 </button>
