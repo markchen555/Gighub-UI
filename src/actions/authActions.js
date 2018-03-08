@@ -4,8 +4,14 @@ import { push } from 'react-router-redux';
 
 const API_SERVER = process.env.API_SERVER;
 
+const typeDetails = {
+  0: 'user',
+  1: 'company',
+  2: 'recruiter'
+};
+
 const authLogin = (loginObj, type) => (dispatch) => {
-  axios.get(`${API_SERVER}/api/user/login/${loginObj.username}/${loginObj.password}`)
+  axios.get(`${API_SERVER}/api/${typeDetails[type]}/login/${loginObj.username}/${loginObj.password}`)
     .then(({ data }) => {
       const decoded = decode(data, { complete: true });
       decoded.payload.type = type;
@@ -20,13 +26,13 @@ const authLogin = (loginObj, type) => (dispatch) => {
 };
 
 const authSignup = (signupObj, type) => (dispatch) => {
-  axios.post(`${API_SERVER}/api/user/signup`)
+  axios.post(`${API_SERVER}/api/user/signup`, signupObj)
     .then(({ data }) => {
       const decoded = decode(data, { complete: true });
       decoded.payload.type = 0;
       dispatch({ type: 'AUTH_SUCCESS', payload: decoded.payload });
     })
-    .catch(err => {
+    .catch((err) => {
       if (err && err.response.status === 409) {
         alert(err.response.data.error);
       }
