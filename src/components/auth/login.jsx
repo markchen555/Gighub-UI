@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { authLogin } from '../../actions/authActions';
@@ -56,6 +56,7 @@ class LoginPage extends Component {
             Login
           </button>
         </form>
+        <Link to="/signup">Sign up</Link>
       </div>
     )
   }
