@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+import './companyDash.css';
+
 import Routes from './routes.jsx';
 import SideNav from '../sideNav/sideNav.jsx';
 
@@ -11,9 +13,11 @@ class CompanyDashView extends Component {
 
   render() {
     return (
-      <div>
-        <SideNav />
-        <Routes />
+      <div className="company-dashboard">
+        <div className="container company-container">
+          <SideNav />
+          <Routes />
+        </div>
       </div>
     )
   }
