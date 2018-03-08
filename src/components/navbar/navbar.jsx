@@ -12,7 +12,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { authorized, authLogout } = this.props;
+    const { authorized, authLogout, type } = this.props;
 
     return (
       <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
@@ -24,7 +24,13 @@ class Navbar extends Component {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               {
-                authorized && 
+                authorized && type === 1 &&
+                <Link className="nav-link" to="/companyDash">Dashboard</Link>
+              }
+            </li>
+            <li className="nav-item active">
+              {
+                authorized && type === 0 &&
                 <Link className="nav-link" to="/profile">Profile</Link>
               }
             </li>
@@ -50,6 +56,7 @@ class Navbar extends Component {
 const NavbarState = (state) => {
   return {
     authorized: state.auth.authorized,
+    type: state.auth.user.type,
   }
 };
 
@@ -62,6 +69,7 @@ const NavbarDispatch = (dispatch) => {
 Navbar.propTypes = {
   authorized: PropTypes.bool,
   authLogout: PropTypes.func,
+  type: PropTypes.number,
 };
 
 export default connect(NavbarState, NavbarDispatch)(Navbar);
