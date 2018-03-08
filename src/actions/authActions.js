@@ -15,10 +15,11 @@ const authLogin = (loginObj, type) => (dispatch) => {
     .then(({ data }) => {
       const decoded = decode(data, { complete: true });
       decoded.payload.type = type;
+      decoded.payload.token = data;
       dispatch({ type: 'AUTH_SUCCESS', payload: decoded.payload });
     })
     .catch(err => {
-      if (err && err.response.status === 403) {
+      if (err && err.response !== undefined && err.response.status === 403) {
         alert(err.response.data.error);
       }
       dispatch({ type: 'AUTH_FAILED' });
@@ -29,11 +30,44 @@ const authSignup = (signupObj, type) => (dispatch) => {
   axios.post(`${API_SERVER}/api/user/signup`, signupObj)
     .then(({ data }) => {
       const decoded = decode(data, { complete: true });
-      decoded.payload.type = 0;
+      decoded.payload.type = type;
+      decoded.payload.token = data;
       dispatch({ type: 'AUTH_SUCCESS', payload: decoded.payload });
     })
     .catch((err) => {
-      if (err && err.response.status === 409) {
+      if (err && err.response !== undefined && err.response.status === 409) {
+        alert(err.response.data.error);
+      }
+      dispatch({ type: 'AUTH_FAILED' });
+    });
+};
+
+const companySignup = ({ username, password }, type) => (dispatch) => {
+  axios.post(`${API_SERVER}/api/company/signup`, { name: username, password })
+    .then(({ data }) => {
+      const decoded = decode(data, { complete: true });
+      decoded.payload.type = type;
+      decoded.payload.token = data;
+      dispatch({ type: 'AUTH_SUCCESS', payload: decoded.payload });
+    })
+    .catch((err) => {
+      if (err && err.response !== undefined && err.response.status === 409) {
+        alert(err.response.data.error);
+      }
+      dispatch({ type: 'AUTH_FAILED' });
+    });
+};
+
+const recruiterSignup = (signupObj, type) => (dispatch) => {
+  axios.post(`${API_SERVER}/api/recruiter/signup`, signupObj)
+    .then(({ data }) => {
+      const decoded = decode(data, { complete: true });
+      decoded.payload.type = type;
+      decoded.payload.token = data;
+      dispatch({ type: 'AUTH_SUCCESS', payload: decoded.payload });
+    })
+    .catch(err => {
+      if (err && err.response !== undefined && (err.response.status === 409 || err.response.status === 404)) {
         alert(err.response.data.error);
       }
       dispatch({ type: 'AUTH_FAILED' });
@@ -45,4 +79,4 @@ const authLogout = () => (dispatch) => {
   dispatch(push('/'));
 };
 
-export { authLogin, authLogout, authSignup };
+export { authLogin, authLogout, authSignup, companySignup, recruiterSignup };

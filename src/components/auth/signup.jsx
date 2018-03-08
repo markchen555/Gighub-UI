@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { push } from 'react-router-redux';
 import PropTypes from 'prop-types';
 
-import { authSignup } from '../../actions/authActions';
+import { authSignup, companySignup, recruiterSignup } from '../../actions/authActions';
 
 import './auth.css';
 
@@ -119,10 +119,20 @@ class SignupPage extends Component {
     }
 
     if (type === 2) {
-      loginObj.token = token;
+      loginObj.SUKey = token;
     }
 
-    this.props.authSignup(loginObj, type);
+    if (type === 0) {
+      this.props.authSignup(loginObj, type);
+    }
+
+    if (type === 1) {
+      this.props.companySignup(loginObj, type);
+    }
+
+    if (type === 2) {
+      this.props.recruiterSignup(loginObj, type);
+    }
   }
 
   render() {
@@ -198,6 +208,8 @@ const SignupDispatch = (dispatch) => {
   return {
     authSignup: bindActionCreators(authSignup, dispatch),
     push: bindActionCreators(push, dispatch),
+    companySignup: bindActionCreators(companySignup, dispatch),
+    recruiterSignup: bindActionCreators(recruiterSignup, dispatch),
   }
 };
 
