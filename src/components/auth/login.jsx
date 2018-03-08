@@ -13,7 +13,14 @@ class LoginPage extends Component {
     this.state = {
       username: '',
       password: '',
+      type: 0,
     };
+  }
+
+  setType(num) {
+    this.setState({
+      type: num,
+    });
   }
 
   setUsername(text) {
@@ -29,8 +36,14 @@ class LoginPage extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, type } = this.state;
     const { authLogin, authorized, failed } = this.props;
+
+    const typeDetails = {
+      0: 'User',
+      1: 'Company',
+      2: 'Recruiter'
+    };
 
     if (authorized) {
       return (
@@ -40,6 +53,29 @@ class LoginPage extends Component {
 
     return (
       <div>
+        <div>
+          <button type="button" onClick={(e) => {
+            e.preventDefault();
+            this.setType(0);
+          }}>
+            Job Seeker
+          </button>
+          <button type="button" onClick={(e) => {
+            e.preventDefault();
+            this.setType(1);
+          }}>
+            Company
+          </button>
+          <button type="button" onClick={(e) => {
+            e.preventDefault();
+            this.setType(2);
+          }}>
+            Recruiter
+          </button>
+        </div>
+        <div>
+          { typeDetails[type] }
+        </div>
         <form>
           <div>
             <label htmlFor="auth-login_username">Username</label>
