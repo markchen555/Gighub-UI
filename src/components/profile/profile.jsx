@@ -34,9 +34,10 @@ class ProfilePage extends Component {
     })
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     axios({
-      method: 'POST',
+      method: 'PUT',
       url: `${API_SERVER}/api/user/edit`,
       headers: {
         "Authorization": `${this.props.token}`,
@@ -63,6 +64,7 @@ class ProfilePage extends Component {
   }
 
   render() {
+    console.log(`this is API Server`, API_SERVER)
     console.log(this.state)
     console.log(this.props.userId, 'this is props')
     if(!this.state.data) {
@@ -105,25 +107,25 @@ class ProfilePage extends Component {
                              <div className="form-group row">
                                 <label className="col-lg-3 col-form-label form-control-label">Phone Number</label>
                                 <div className="col-lg-9">
-                                  <input type="text" readOnly className="form-control-plaintext" >{this.state.data.phoneNumber}</input>
+                                  <input type="text" readOnly className="form-control-plaintext" value={this.state.data.Bio.phoneNumber}></input>
                                 </div>
                               </div>
                               <div className="form-group row">
                                 <label className="col-lg-3 col-form-label form-control-label">Location</label>
                                 <div className="col-lg-9">
-                                  <input type="text" readOnly className="form-control-plaintext">{this.state.data.location}</input>
+                                  <input type="text" readOnly className="form-control-plaintext" value={this.state.data.Bio.location}></input>
                                 </div>
                               </div>
                               <div className="form-group row">
                                 <label className="col-lg-3 col-form-label form-control-label">Headline</label>
                                 <div className="col-lg-9">
-                                  <input type="text" readOnly className="form-control-plaintext" >{this.state.data.headline}</input>
+                                  <input type="text" readOnly className="form-control-plaintext" value={this.state.data.Bio.headline || ''}></input>
                                 </div>
                               </div>
                               <div className="form-group row">
                                 <label className="col-lg-3 col-form-label form-control-label">Experience Level</label>
                                 <div className="col-lg-9">
-                                  <input type="text" readOnly className="form-control-plaintext">{this.state.data.experience}</input>
+                                  <input type="text" readOnly className="form-control-plaintext" value={this.state.data.Bio.experience || ''}></input>
                                 </div>
                               </div>
                               <div className="form-group row">
@@ -135,25 +137,25 @@ class ProfilePage extends Component {
                               <div className="form-group row">
                                 <label className="col-lg-3 col-form-label form-control-label">Linkedin</label>
                                 <div className="col-lg-9">
-                                  <input type="text" readOnly className="form-control-plaintext" >{this.state.data.linkedIn}</input>
+                                  <input type="text" readOnly className="form-control-plaintext" value={this.state.data.Bio.linkedIn || ''}></input>
                                 </div>
                               </div>
                               <div className="form-group row">
                                 <label className="col-lg-3 col-form-label form-control-label">Twitter</label>
                                 <div className="col-lg-9">
-                                  <input type="text" readOnly className="form-control-plaintext">{this.state.data.twitter}</input>
+                                  <input type="text" readOnly className="form-control-plaintext" value={this.state.data.Bio.twitter || ''}></input>
                                 </div>
                               </div>
                               <div className="form-group row">
                                 <label className="col-lg-3 col-form-label form-control-label">Github</label>
                                 <div className="col-lg-9">
-                                  <input type="text" readOnly className="form-control-plaintext">{this.state.data.github}</input>
+                                  <input type="text" readOnly className="form-control-plaintext" value={this.state.data.Bio.github || ''} ></input>
                                 </div>
                               </div>
                               <div className="form-group row">
                                 <label className="col-lg-3 col-form-label form-control-label">Personal Portfolio</label>
                                 <div className="col-lg-9">
-                                  <input type="text" readOnly className="form-control-plaintext">{this.state.data.personal}</input>
+                                  <input type="text" readOnly className="form-control-plaintext" value={this.state.data.Bio.personal || ''}></input>
                                 </div>
                               </div>
                               <div className="form-group row">
