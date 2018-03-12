@@ -253,8 +253,8 @@ class ProfilePage extends Component {
                               <div className="form-group row">
                                   <label className="col-lg-3 col-form-label form-control-label"></label>
                                   <div className="col-lg-9">
-                                      <input type="reset" className="btn btn-secondary" value="Cancel"></input>
-                                      <input type="button" className="btn btn-primary" value="Save Changes" onClick={this.handleSubmit}></input>
+                                      <input type="reset" className="btn btn-secondary" value="Reset"></input>
+                                      <input type="button" className="btn btn-primary" value="Submit" onClick={this.handleSubmit}></input>
                                   </div>
                               </div>
                           </form>
